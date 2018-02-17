@@ -1,0 +1,16 @@
+i.icon {
+    font-size: 2em;
+}
+
+.container.segment {
+    margin-top: 5em;
+}
+
+img {
+    width: 500px;
+    height: 300px;
+}
+
+i.right.arrow.icon, a {
+    color: #21ba45;
+}
