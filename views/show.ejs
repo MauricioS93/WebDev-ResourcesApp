@@ -1,11 +1,11 @@
 <% include ./partials/header%>
 
 
-<div class="ui main text container segment">
+<div class="ui main text container">
     <div class="ui huge header">
             <%= blog.title %>
     </div>
-    <div class="ui top attached">
+    <div class="ui top attached segment">
         <div class="item">
             <img class="ui rounded medium centered image" src="<%= blog.image%>">
             <div class="content">
@@ -14,13 +14,20 @@
             <div class="description">
                 <p><%- blog.body %></p>
             </div>
-            <div class="ui animated basic green button" tabindex="0">
+            <div class="btn ui animated basic green button" tabindex="0">
                 <div class="visible content">Edit</div>
                 <div class="hidden content">
-                    <a href="/blogs/<%= blog.id %>/edit"><i class="right arrow icon"></i></a>
+                    <a id="edit" href="/blogs/<%= blog.id %>/edit"><i class="file text outline icon"></i></a>
                 </div>
             </div>    
-            
+            <form class="btn btn-delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                <button class="ui animated basic red button" tabindex="0">
+                    <div class="visible content">Delete</div>
+                    <div class="hidden content">
+                        <i class="warning circle  icon"></i>
+                    </div>
+                </button> 
+            </form>
         </div>
     </div>
 </div>

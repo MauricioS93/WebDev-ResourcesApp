@@ -2,8 +2,8 @@ i.icon {
     font-size: 2em;
 }
 
-.container.segment {
-    margin-top: 5em;
+.container.segment, .main.text.container {
+    margin-top: 7em;
 }
 
 img {
@@ -11,6 +11,26 @@ img {
     height: 300px;
 }
 
-i.right.arrow.icon, a {
+a#edit {
     color: #21ba45;
+}
+
+a#delete {
+    color: #db2828;
+}
+
+a#readMore {
+    color: #6435c9;
+}
+
+.btn-delete {
+    display: inline-block;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+.basic.button {
+    min-width: 96px;
 }

@@ -29,8 +29,8 @@ router.get("/blogs/new", (req, res) => {
 
 // Create a new blog
 router.post("/blogs", (req, res) => {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(req.body.blog, (err, newBlog) => {
-        // console.log(req.body.blog);
         if(err){
             res.render('new');
         } else {
@@ -63,11 +63,23 @@ router.get('/blogs/:id/edit', (req,res) => {
 
 // Update Route - Send information from form and update database
 router.put('/blogs/:id', (req, res) => {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedPost) => {
         if(err) {
             res.redirect('back');
         } else {
             res.redirect('/blogs/' + req.params.id);
+        }
+    });
+});
+
+// Remove Route
+router.delete('/blogs/:id', (req, res) => {
+    Blog.findByIdAndRemove(req.params.id, err => {
+        if (err){
+            res.redirect('/blogs');
+        } else {
+            res.redirect('/blogs');
         }
     });
 });
