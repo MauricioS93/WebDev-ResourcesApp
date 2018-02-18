@@ -8,9 +8,16 @@ const app = express();
 
 // Require Models
 let Blog = require("./models/blogs");
+let Comment = require('./models/comments');
 
 // Require Routes
-let blogRoute = require("./routes/blogs");
+let blogsRoute = require("./routes/blogs");
+let commentsRoute = require("./routes/comments");
+
+
+// Require Seeds
+const seedDB = require('./seed');
+seedDB();
 
 // App configuration
 mongoose.connect("mongodb://localhost/resourcesApp");
@@ -21,7 +28,8 @@ app.use(expressSanitizer()); //Hast to go before bodyParser
 app.use(methodOverride("_method"));
 
 // Tell App to use those routes created.
-app.use(blogRoute);
+app.use(blogsRoute);
+app.use(commentsRoute);
 
 // Listen route
 app.listen(8080, "localhost", function() {

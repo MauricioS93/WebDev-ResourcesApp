@@ -30,6 +30,12 @@
             </form>
         </div>
     </div>
+    <div class="ui segment raised">
+        <% blog.comments.forEach((comment) => { %>
+            <p><strong><%= comment.author %></strong>
+            <p><%= comment.text %></p>
+        <% })%>
+    </div>
 </div>
 
 <% include ./partials/footer%>

@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const Blog = require("../models/blogs");
 
 // ====================
@@ -41,10 +41,12 @@ router.post("/blogs", (req, res) => {
 
 // Show route - show a specific post
 router.get('/blogs/:id', (req, res) => {
-    Blog.findById(req.params.id, (err, foundBlog) => {
+    Blog.findById(req.params.id).populate('comments').exec((err, foundBlog) => {
         if (err){
             res.redirect('/blogs');
         } else {
+            //Now we hage populated the comments into the found blog, by using the populate and then executing the created query. Now we will see the actual comment related to this blog by:
+            // console.log(foundBlog);
             res.render('show', {blog: foundBlog});
         }
     });
