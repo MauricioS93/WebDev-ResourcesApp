@@ -44,7 +44,7 @@
                     <div class="content">
                     <a class="author"><%= comment.author %></a>
                     <div class="metadata">
-                        <div class="date">1 day ago</div>
+                        <div class="date"><%=comment.created.toLocaleString()%></div>
                     </div>
                     <div class="text">
                         <p><%= comment.text %></p>

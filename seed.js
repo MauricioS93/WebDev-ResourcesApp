@@ -35,28 +35,28 @@ function seedDB(){
             console.log(err);
         }
         console.log('Removed Comments');
-            data.forEach((seed) => { //This line has to go inside our Blog.remove callback to make sure that the campgrounds are removed FIRST and then the Blog is created.
-                Blog.create(seed, (err, blog) => {
-                    if (err){
-                        console.log(err);
-                    } else {
-                        console.log('added blog');
-                        //Create a comment for each Blog
-                        Comment.create({
-                            text: 'This is a great place',
-                            author: 'Mauricio'
-                        }, (err, comment) => {
-                            if(err){
-                                console.log(err);
-                            } else {
-                                blog.comments.push(comment._id);
-                                blog.save();
-                                console.log('Created a new comment');
-                            }
-                        });
-                    }
-                });
-            });
+            // data.forEach((seed) => { //This line has to go inside our Blog.remove callback to make sure that the campgrounds are removed FIRST and then the Blog is created.
+            //     Blog.create(seed, (err, blog) => {
+            //         if (err){
+            //             console.log(err);
+            //         } else {
+            //             console.log('added blog');
+            //             //Create a comment for each Blog
+            //             Comment.create({
+            //                 text: 'This is a great place',
+            //                 author: 'Mauricio'
+            //             }, (err, comment) => {
+            //                 if(err){
+            //                     console.log(err);
+            //                 } else {
+            //                     blog.comments.push(comment._id);
+            //                     blog.save();
+            //                     console.log('Created a new comment');
+            //                 }
+            //             });
+            //         }
+            //     });
+            // });
         });
     });   
     // Add/create blogs 
