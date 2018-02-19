@@ -1,0 +1,17 @@
+<% include ../partials/header%>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">
+        Edit Comment
+    </div>
+    <form class="ui form" action="/blogs/<%= blog_id %>/comments/<%= comment._id%>?_method=PUT" method="POST">
+        <div class="field">
+            <label>New Comment</label>
+            <textarea rows="2" name="comment[text]"> <%= comment.text %></textarea>
+        </div>
+        <button class="ui blue big inverted button">Create</button>
+    </form>
+    <a href="/blogs/<%= blog_id %>">Back</a>
+</div>
+
+<% include ../partials/footer%>

@@ -17,7 +17,7 @@
             <div class="btn ui animated basic green button" tabindex="0">
                 <div class="visible content">Edit</div>
                 <div class="hidden content">
-                    <a id="edit" href="/blogs/<%= blog.id %>/edit"><i class="file text outline icon"></i></a>
+                    <a id="edit" href="/blogs/<%= blog.id %>/edit"><i class="edit icon"></i></a>
                 </div>
             </div>    
             <form class="btn btn-delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
@@ -30,18 +30,45 @@
             </form>
         </div>
     </div>
-    <div class="ui medium header">
+    <div class="ui comments">
+        <h3 class="ui dividing header">Comments</h3>
+        <span><a href="/blogs/<%= blog._id %>/comments/new"</a>New Comment</a></span>
+        <div class="ui segment raised">
+            <% blog.comments.forEach((comment) => { %>
+                <div class="comment">
+                    <a class="avatar">
+                    <img src="http://www.rsmhawaii.com/wp-content/uploads/2016/02/techguy-avatar-150x150.png">
+                    </a>
+                    <div class="content">
+                    <a class="author"><%= comment.author %></a>
+                    <div class="metadata">
+                        <div class="date">1 day ago</div>
+                    </div>
+                    <div class="text">
+                        <p><%= comment.text %></p>
+                    </div>
+                    <div class="actions">
+                        <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="reply">Edit</a>
+                    </div>
+                </div>
+            <% })%>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="ui medium header">
         Comments
         <a href="/blogs/<%= blog._id %>/comments/new"</a>New Comment</a>
     </div>
     <div class="ui segment raised">
         <% blog.comments.forEach((comment) => { %>
-            <p><strong><%= comment.author %></strong>
+            <p><strong></strong>
             <p><%= comment.text %></p>
             <hr>
         <% })%>
     </div>
-</div>
+</div> -->
 
 <% include ../partials/footer%>
 

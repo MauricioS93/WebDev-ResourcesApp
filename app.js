@@ -8,22 +8,21 @@ const app = express();
 
 // Require Models
 let Blog = require("./models/blogs");
-let Comment = require('./models/comments');
+let Comment = require("./models/comments");
 
 // Require Routes
 let blogsRoute = require("./routes/blogs");
 let commentsRoute = require("./routes/comments");
 
-
 // Require Seeds
-const seedDB = require('./seed');
+const seedDB = require("./seed");
 // seedDB();
 
 // App configuration
 mongoose.connect("mongodb://localhost/resourcesApp");
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(express.static(__dirname + "/public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer()); //Hast to go before bodyParser
 app.use(methodOverride("_method"));
 
