@@ -65,4 +65,15 @@ router.put('/blogs/:id/comments/:comment_id', (req, res) => {
     });
 });
 
+// Destroy/Delete comment
+router.delete('/blogs/:id/comments/:comment_id', (req, res) => {
+    Comment.findByIdAndRemove(req.params.comment_id, (err, comment) => {
+        if(err) {
+            res.redirect('back');
+        } else {
+            res.redirect('/blogs/' + req.params.id);
+        }
+    });
+});
+
 module.exports = router;

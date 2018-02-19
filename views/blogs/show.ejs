@@ -30,6 +30,8 @@
             </form>
         </div>
     </div>
+
+    <!-- COMMENTS PORTION -->
     <div class="ui comments">
         <h3 class="ui dividing header">Comments</h3>
         <span><a href="/blogs/<%= blog._id %>/comments/new"</a>New Comment</a></span>
@@ -49,6 +51,11 @@
                     </div>
                     <div class="actions">
                         <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="reply">Edit</a>
+                    </div>
+                    <div  class="actions">
+                        <form class="btn btn-delete" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <input type="submit" id="deleteComment" class="reply" value="Delete"></input>
+                        </form>
                     </div>
                 </div>
             <% })%>

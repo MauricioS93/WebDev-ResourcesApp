@@ -34,3 +34,17 @@ a#readMore {
 .basic.button {
     min-width: 96px;
 }
+
+/* Delete Button Comments */
+.actions {
+    display: inline;
+    margin-right: 20px;
+}
+
+input#deleteComment {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    outline: none;
+}
