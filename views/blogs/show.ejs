@@ -1,4 +1,4 @@
-<% include ./partials/header%>
+<% include ../partials/header%>
 
 
 <div class="ui main text container">
@@ -30,15 +30,20 @@
             </form>
         </div>
     </div>
+    <div class="ui medium header">
+        Comments
+        <a href="/blogs/<%= blog._id %>/comments/new"</a>New Comment</a>
+    </div>
     <div class="ui segment raised">
         <% blog.comments.forEach((comment) => { %>
             <p><strong><%= comment.author %></strong>
             <p><%= comment.text %></p>
+            <hr>
         <% })%>
     </div>
 </div>
 
-<% include ./partials/footer%>
+<% include ../partials/footer%>
 
 
 

@@ -17,7 +17,7 @@ let commentsRoute = require("./routes/comments");
 
 // Require Seeds
 const seedDB = require('./seed');
-seedDB();
+// seedDB();
 
 // App configuration
 mongoose.connect("mongodb://localhost/resourcesApp");

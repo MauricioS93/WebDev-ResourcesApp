@@ -49,7 +49,7 @@ function seedDB(){
                             if(err){
                                 console.log(err);
                             } else {
-                                blog.comments.push(comment);
+                                blog.comments.push(comment._id);
                                 blog.save();
                                 console.log('Created a new comment');
                             }

@@ -17,14 +17,14 @@ router.get("/blogs", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("index", { blogs: blogs });
+      res.render("blogs/index", { blogs: blogs });
     }
   });
 });
 
 //Show the new form
 router.get("/blogs/new", (req, res) => {
-  res.render("new");
+  res.render("blogs/new");
 });
 
 // Create a new blog
@@ -32,7 +32,7 @@ router.post("/blogs", (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(req.body.blog, (err, newBlog) => {
         if(err){
-            res.render('new');
+            res.render('blogs/new');
         } else {
             res.redirect('/blogs');
         }
@@ -47,7 +47,7 @@ router.get('/blogs/:id', (req, res) => {
         } else {
             //Now we hage populated the comments into the found blog, by using the populate and then executing the created query. Now we will see the actual comment related to this blog by:
             // console.log(foundBlog);
-            res.render('show', {blog: foundBlog});
+            res.render('blogs/show', {blog: foundBlog});
         }
     });
 });
@@ -58,7 +58,7 @@ router.get('/blogs/:id/edit', (req,res) => {
         if(err){
             res.redirect('/blogs');
         } else {
-            res.render('edit', {blog: updateBlog});
+            res.render('blogs/edit', {blog: updateBlog});
         }
     });
 });
