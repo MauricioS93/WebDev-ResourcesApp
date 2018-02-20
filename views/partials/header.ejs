@@ -4,27 +4,66 @@
     <title>Blog App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
     <link rel="stylesheet" href='/stylesheets/style.css'>
-    <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js"
+     integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+     <!-- <script> src="/js/navbar.js"</script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.js"></script>
+    
 </head>
 <body>
-    
-<div class="ui fixed menu">
-    <div class="ui container">
-        <div class="header item"><i class="book icon"></i>WebDev Blog</div>
-        <a href="/" class="item">Home</a>
-        <a href="/blogs/new" class="item">New Blog</a>
-        <div class="ui simple dropdown item">
-            Topics <i class="dropdown icon"></i>
-            <div class="menu">
-                <div class="item">CSS</div>
-                <div class="item">JavaScript</div>
+    <div class="ui fixed menu">
+        <div class="ui container">
+            <div class="header item"><i class="book icon"></i>WebDev Blog</div>
+            <a href="/" class="item">Home</a>
+            <a href="/blogs/new" class="item">New Blog</a>
+            <div class="ui simple dropdown item">
+                Topics <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item">CSS</div>
+                    <div class="item">JavaScript</div>
+                </div>
+            </div> 
+            <div class="right menu">
+                <a href="/register"class="item">Sign Up</a>
+                <a href="/login"class="item">Log In</a>
+                <a href="/logout"class="item">Log Out</a>
             </div>
-        </div> 
-        <div class="right menu">
-            <a href="/register"class="item">Sign Up</a>
-            <a href="/login"class="item">Log In</a>
-            <a href="/logout"class="item">Log Out</a>
         </div>
     </div>
-</div>
+
+    <div class="ui burger-container" id="burger-container">
+        <div class="burger"></div>
+        <div class="burger"></div>
+        <div class="burger"></div>
+    </div>  
+
+    <div class="ui left vertical sidebar menu">
+        <div class="item navbar">
+                <i class="book icon center"></i><strong>WebDev Blog</strong>
+        </div>
+        <a href="/" class="item">
+            <i class="home icon center"></i>
+            Home
+        </a>
+        <div class="ui dropdown item">
+            <i class="dropdown icon"></i>
+            Topics
+            <div class="menu">
+                <a class="item"><i class="edit icon"></i> CSS</a>
+                <a class="item"><i class="globe icon"></i> Javascript</a>
+                <a class="item"><i class="settings icon"></i>Algorithms & CS</a>
+            </div>
+        </div>
+        <a href="/register" class="item">
+            <i class="user icon center"></i>
+            Register
+        </a> 
+        <a href="/login" class="item">
+            <i class="sign in icon center"></i>
+            Login
+        </a> 
+        <a href="/logout" class="item">
+            <i class="sign out icon center"></i>
+            Logout
+        </a> 
+    </div>

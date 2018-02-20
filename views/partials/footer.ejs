@@ -1,4 +1,13 @@
 
+<script>
+    $('.ui.left.sidebar').sidebar({
+    transition: 'overlay'
+});
+// left is opened by button
+$('.ui.left.sidebar')
+    .sidebar('attach events', '.burger-container');
+$('.ui .dropdown').dropdown();
+</script>
 
 </body>
 </html>

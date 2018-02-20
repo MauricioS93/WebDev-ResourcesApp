@@ -3,9 +3,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const expressSanitizer = require("express-sanitizer");
 const methodOverride = require("method-override");
+
+//Authentication Packages
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
+// Calling Express
 const app = express();
 
 // Require Models
