@@ -1,0 +1,22 @@
+<% include ./partials/header%>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">
+        Login
+    </div>
+    <form class="ui form" action="/login" method="POST">
+        <div class="field">
+            <label> Username </label>
+            <input type="text" name="username" placeholder="Username" required>
+        </div>
+        <div class="field">
+            <label> Password </label>
+            <input type="password" name="password" minlength="6"
+            maxlength="12" placeholder="Password" required>
+        </div>
+        <button class="ui green big inverted button">Register</button>
+    </form>
+    <a href="/blogs">Back</a>
+</div>
+
+<% include ./partials/footer%>

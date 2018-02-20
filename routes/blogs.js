@@ -6,11 +6,6 @@ const Blog = require("../models/blogs");
 // BLOGS ROUTE
 // ====================
 
-//Root Route
-router.get("/", (req, res) => {
-  res.redirect("/blogs");
-});
-
 //Index Route
 router.get("/blogs", (req, res) => {
   Blog.find({}, (err, blogs) => {

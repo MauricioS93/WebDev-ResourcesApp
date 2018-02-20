@@ -1,0 +1,38 @@
+<% include ./partials/header%>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">
+        Register
+    </div>
+    <form class="ui form" action="/register" method="POST">
+        <div class=" two fields">
+            <div class="field">
+                <label> First Name </label>
+                <input class="" type="text" name="name" placeholder="First name" required>
+            </div>
+            <div class="field">
+                <label> Last Name </label>
+                <input type="text" name="lastname" placeholder="Last name" required>
+            </div>
+        </div>
+        <div class=" two fields">
+            <div class="field">
+                <label> Email </label>
+                <input type="text" name="email" placeholder="Email" required>
+            </div>
+            <div class="field">
+                <label> Username </label>
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+        </div>
+        <div class="one field">
+            <label> Password </label>
+            <input type="password" name="password" minlength="6"
+            maxlength="12" placeholder="Password" required>
+        </div>
+        <button class="ui green big inverted button">Register</button>
+    </form>
+    <a href="/blogs">Back</a>
+</div>
+
+<% include ./partials/footer%>
