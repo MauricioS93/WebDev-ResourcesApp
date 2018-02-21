@@ -12,7 +12,7 @@ router.get("/blogs", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("blogs/index", { blogs: blogs });
+      res.render("blogs/index", { blogs: blogs});
     }
   });
 });

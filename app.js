@@ -47,6 +47,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//Adding currentUser information to use in all of our routes
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 // Tell App to use those routes created.
 app.use(blogsRoute);
 app.use(commentsRoute);

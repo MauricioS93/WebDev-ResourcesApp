@@ -1,12 +1,17 @@
 
 <script>
-    $('.ui.left.sidebar').sidebar({
+ $('.ui.left.sidebar').sidebar({
     transition: 'overlay'
 });
-// left is opened by button
-$('.ui.left.sidebar')
-    .sidebar('attach events', '.burger-container');
+
+// Sidebar opens when clicked
+$('#toggle').click(()=>{
+    $('.ui.sidebar').sidebar('toggle')
+})
+
+//Inside menu dropdown
 $('.ui .dropdown').dropdown();
+
 </script>
 
 </body>

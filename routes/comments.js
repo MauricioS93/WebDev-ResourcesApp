@@ -4,7 +4,7 @@ const Blog = require("../models/blogs");
 const Comment = require("../models/comments");
 
 // New Comment form
-router.get("/blogs/:id/comments/new", (req, res) => {
+router.get("/blogs/:id/comments/new", isLoggedIn, (req, res) => {
   Blog.findById(req.params.id, (err, blog) => {
     if (err) {
       res.redirect("back");
@@ -15,7 +15,7 @@ router.get("/blogs/:id/comments/new", (req, res) => {
 });
 
 // create new comment
-router.post("/blogs/:id/comments", (req, res) => {
+router.post("/blogs/:id/comments", isLoggedIn, (req, res) => {
   //Find post using id
   Blog.findById(req.params.id, (err, blog) => {
     if (err) {
@@ -75,5 +75,12 @@ router.delete('/blogs/:id/comments/:comment_id', (req, res) => {
         }
     });
 });
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/login');
+}
 
 module.exports = router;

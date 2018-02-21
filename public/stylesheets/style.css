@@ -35,6 +35,10 @@ a#readMore {
     min-width: 96px;
 }
 
+.ui.segment.raised {
+    margin-bottom: 30px;
+}
+
 /* Delete Button Comments */
 .actions {
     display: inline;
@@ -52,29 +56,26 @@ input#deleteComment {
 
 /* NavBar */
 @media (min-width: 701px){
-    .ui.left.vertical.sidebar.menu{
+    #mobile{
         display: none;
         overflow: hidden;
-    }
-    .burger-container{
-        display: none;
     }
 }
 
 @media (max-width: 700px){
-    .ui.fixed.menu{
-        display: none;
-    }
     .ui.sidebar {
         overflow: visible !important;
     }
     .container.segment, .main.text.container {
         margin-top: 4em;
     }
+    #desktop{
+        display: none;
+    }
 }
+
 .ui.sidebar {
     max-height: 50%;
-
 }
 
 .item.navbar > a {
