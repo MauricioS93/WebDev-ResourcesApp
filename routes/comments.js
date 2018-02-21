@@ -27,9 +27,15 @@ router.post("/blogs/:id/comments", isLoggedIn, (req, res) => {
         if (err) {
           res.redirect("back");
         } else {
+          //add user and id to specific comment
+          comments.author.id = req.user._id;
+          comments.author.username = req.user.username;
+          //save comment
+          comments.save();
           //connect new commento to blog post
           blog.comments.push(comments._id);
           blog.save();
+          console.log(comments);
           res.redirect("/blogs/" + blog._id);
         }
       });

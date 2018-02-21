@@ -3,82 +3,81 @@
 
 <div class="ui main text container">
     <div class="ui huge header">
-            <%= blog.title %>
+        <%= blog.title %>
     </div>
     <div class="ui top attached segment">
         <div class="item">
             <img class="ui rounded medium centered image" src="<%= blog.image%>">
             <div class="content">
-                <span><%= blog.created.toDateString()%></span>
+                <span>
+                    <%= blog.created.toDateString()%>
+                </span>
             </div>
             <div class="description">
-                <p><%- blog.body %></p>
+                <p>
+                    <%- blog.body %>
+                </p>
             </div>
             <div class="btn ui animated basic green button" tabindex="0">
                 <div class="visible content">Edit</div>
                 <div class="hidden content">
-                    <a id="edit" href="/blogs/<%= blog.id %>/edit"><i class="edit icon"></i></a>
+                    <a id="edit" href="/blogs/<%= blog.id %>/edit">
+                        <i class="edit icon"></i>
+                    </a>
                 </div>
-            </div>    
+            </div>
             <form class="btn btn-delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
                 <button class="ui animated basic red button" tabindex="0">
                     <div class="visible content">Delete</div>
                     <div class="hidden content">
                         <i class="warning circle  icon"></i>
                     </div>
-                </button> 
+                </button>
             </form>
         </div>
     </div>
+</div>
 
-    <!-- COMMENTS PORTION -->
+        <!-- COMMENTS PORTION -->
+<div class="container ui comments">
     <div class="ui comments">
         <h3 class="ui dividing header">Comments</h3>
-        <span><a href="/blogs/<%= blog._id %>/comments/new"</a>New Comment</a></span>
+        <span>
+            <a href="/blogs/<%= blog._id %>/comments/new" </a>New Comment</a>
+        </span>
         <div class="ui segment raised">
             <% blog.comments.forEach((comment) => { %>
                 <div class="comment">
                     <a class="avatar">
-                    <img src="http://www.rsmhawaii.com/wp-content/uploads/2016/02/techguy-avatar-150x150.png">
+                        <img src="http://www.rsmhawaii.com/wp-content/uploads/2016/02/techguy-avatar-150x150.png">
                     </a>
                     <div class="content">
-                    <a class="author"><%= comment.author %></a>
-                    <div class="metadata">
-                        <div class="date"><%=comment.created.toLocaleString()%></div>
-                    </div>
-                    <div class="text">
-                        <p><%= comment.text %></p>
-                    </div>
-                    <div class="actions">
-                        <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="reply">Edit</a>
-                    </div>
-                    <div  class="actions">
-                        <form class="btn btn-delete" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                            <input type="submit" id="deleteComment" class="reply" value="Delete"></input>
-                        </form>
+                        <a class="author">
+                            <%= comment.author.username %>
+                        </a>
+                        <div class="metadata">
+                            <div class="date">
+                                <%=comment.created.toLocaleString()%>
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>
+                                <%= comment.text %>
+                            </p>
+                        </div>
+                        <div class="actions">
+                            <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="reply">Edit</a>
+                        </div>
+                        <div class="actions">
+                            <form class="btn btn-delete" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" id="deleteComment" class="reply" value="Delete"></input>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            <% })%>
+            <% })%>    
         </div>
     </div>
-
-
-
-    <!-- <div class="ui medium header">
-        Comments
-        <a href="/blogs/<%= blog._id %>/comments/new"</a>New Comment</a>
-    </div>
-    <div class="ui segment raised">
-        <% blog.comments.forEach((comment) => { %>
-            <p><strong></strong>
-            <p><%= comment.text %></p>
-            <hr>
-        <% })%>
-    </div>
-</div> -->
+</div>
 
 <% include ../partials/footer%>
-
-
-
-

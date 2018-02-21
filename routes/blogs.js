@@ -17,13 +17,13 @@ router.get("/blogs", (req, res) => {
   });
 });
 
-//Show the new form
-router.get("/blogs/new", (req, res) => {
+//NEW / Show the new form
+router.get("/blogs/new", isLoggedIn, (req, res) => {
   res.render("blogs/new");
 });
 
-// Create a new blog
-router.post("/blogs", (req, res) => {
+//CREATE / a new blog
+router.post("/blogs", isLoggedIn, (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(req.body.blog, (err, newBlog) => {
         if(err){
@@ -81,5 +81,10 @@ router.delete('/blogs/:id', (req, res) => {
     });
 });
 
-
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login');
+}
 module.exports = router;
