@@ -72,6 +72,7 @@
                                 <%= comment.text %>
                             </p>
                         </div>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){%>
                         <div class="actions">
                             <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="reply">Edit</a>
                         </div>
@@ -80,6 +81,7 @@
                                 <input type="submit" id="deleteComment" class="reply" value="Delete"></input>
                             </form>
                         </div>
+                        <%}%>
                     </div>
                 </div>
             <% })%>    

@@ -1,6 +1,6 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router({mergeParams: true});
-const Blog = require("../models/blogs");
+const Blog = require('../models/blogs');
 
 // ====================
 // BLOGS ROUTE
