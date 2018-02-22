@@ -8,16 +8,22 @@
     <div class="ui top attached segment">
         <div class="item">
             <img class="ui rounded medium centered image" src="<%= blog.image%>">
-            <div class="content">
+            <div class="metadata" id="metadata-blogcreatedby">
+                    <span>
+                        Submitted By: <%= blog.author.username %>
+                    </span>
+                </div>
+            <div class="metadata" id="metadata-blogcreated">
                 <span>
                     <%= blog.created.toDateString()%>
                 </span>
             </div>
-            <div class="description">
+            <div class="description" id="blog-body">
                 <p>
                     <%- blog.body %>
                 </p>
             </div>
+            <% if(currentUser && blog.author.id.equals(currentUser._id)){%>
             <div class="btn ui animated basic green button" tabindex="0">
                 <div class="visible content">Edit</div>
                 <div class="hidden content">
@@ -34,6 +40,7 @@
                     </div>
                 </button>
             </form>
+            <% } %>
         </div>
     </div>
 </div>

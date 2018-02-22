@@ -10,14 +10,15 @@ body{
 /* BLOGS PAGE */
 .container.segment, .main.text.container {
     margin-top: 5em;
+    width: 75%;
 }
 
-img {
+/* img {
     width: 500px;
     height: 300px;
-}
+} */
 
-/* Buttons Comments */
+/* BUTTONS */
 .actions {
     display: inline;
     margin-right: 20px;
@@ -120,4 +121,25 @@ i {
 .ui.container.comments {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+/* MAIN SHOW SECTION */
+#metadata-blogcreated{
+    color: rgba(0,0,0,.4);
+    font-size: .875em;
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+#blog-body{
+    clear: both;
+    margin-bottom: 20px;
+}
+
+#metadata-blogcreatedby {
+    float: left;
+    color: rgba(0,0,0,.4);
+    font-size: .995em;
+    margin-top: 20px;
 }
