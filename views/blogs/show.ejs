@@ -24,22 +24,22 @@
                 </p>
             </div>
             <% if(currentUser && blog.author.id.equals(currentUser._id)){%>
-            <div class="btn ui animated basic green button" tabindex="0">
-                <div class="visible content">Edit</div>
-                <div class="hidden content">
-                    <a id="edit" href="/blogs/<%= blog.id %>/edit">
-                        <i class="edit icon"></i>
-                    </a>
-                </div>
-            </div>
-            <form class="btn btn-delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-                <button class="ui animated basic red button" tabindex="0">
-                    <div class="visible content">Delete</div>
+                <div class="btn ui animated basic green button" tabindex="0">
+                    <div class="visible content">Edit</div>
                     <div class="hidden content">
-                        <i class="warning circle  icon"></i>
+                        <a id="edit" href="/blogs/<%= blog.id %>/edit">
+                            <i class="edit icon"></i>
+                        </a>
                     </div>
-                </button>
-            </form>
+                </div>
+                <form class="btn btn-delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                    <button class="ui animated basic red button" tabindex="0">
+                        <div class="visible content">Delete</div>
+                        <div class="hidden content">
+                            <i class="warning circle  icon"></i>
+                        </div>
+                    </button>
+                </form>
             <% } %>
         </div>
     </div>
