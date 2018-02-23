@@ -1,0 +1,33 @@
+div#lan-header {
+    margin-top: 57px;
+    height: 250px;
+    display: grid;
+    grid-template-columns: 1fr;
+    background: #1b1c1d69;
+    align-items: center;
+}
+
+.lan-head-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+}
+
+.lan-head-center {
+    margin: 0;
+    align-content: center;
+    height: 50px;
+    margin: 0 15px;
+}
+
+h1.lan-head-center{
+    color: rgba(0, 0, 0, 0.616);
+}
+
+/* MIDDLE CONTENT */
+.ui.vertical.stripe.segment {
+    margin: 20px;
+}
+.ui.middle-content{
+    margin: 25px 10px;
+}
