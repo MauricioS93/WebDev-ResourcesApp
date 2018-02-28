@@ -12,7 +12,8 @@ let userSchema = new mongoose.Schema({
     memberSince: {
         type: Date,
         default: Date.now
-    }
+    },
+    aboutme: String
 });
 
 userSchema.plugin(passportLocalMongoose);

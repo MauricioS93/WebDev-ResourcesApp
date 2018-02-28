@@ -5,10 +5,6 @@
         Register
     </div>
     <form class="ui form" action="/register" method="POST">
-        <div class="field">
-            <label> Avatar Url </label>
-            <input class="" type="text" name="avatar" placeholder="Avatar Url">
-        </div>
         <div class=" two fields">
             <div class="field">
                 <label> First Name </label>
@@ -39,7 +35,18 @@
                 <input type="text" name="admin" placeholder="Admin Code">
             </div>
         </div>
-        <button class="ui green big inverted button">Register</button>
+        <div class="field">
+            <label> Avatar Url </label>
+            <input class="" type="text" name="avatar" placeholder="Avatar Url">
+        </div>
+        <div class="field" id="aboutMe-text">
+            <label> About Me </label>
+            <textarea name="aboutme" cols="2" rows="2" placeholder="Tell us about you" maxlength="100"></textarea>
+        </div>
+        <div id="max-char">
+            <span>Max. 100 characters</span>
+        </div>
+        <button id="register-btn" class="ui green big inverted button">Register</button>
     </form>
     <a href="/blogs">Back</a>
 </div>

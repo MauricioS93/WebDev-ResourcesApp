@@ -7,7 +7,7 @@
     <% users.forEach(user => { %>
     <div class="three wide column">
         <div class="ui card">
-            <div class="image">
+            <div class="image" id="avatar-users">
                 <img src="<%=user.avatar%>">
             </div>
             <div class="content">
@@ -18,7 +18,7 @@
                 <span class="date">Joined in <%= months[user.memberSince.getMonth()]%>, <%= user.memberSince.getFullYear() %> </span>
                 </div>
                 <div class="description">
-                <%= user.aboutMe %>
+                <%= user.aboutme %>
                 </div>
             </div>
             <div class="extra content">

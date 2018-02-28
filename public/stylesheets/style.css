@@ -145,3 +145,22 @@ i {
     margin-top: 7em;
     margin-left: 75px;
 }
+#avatar-users img{
+    height: 150px;
+}
+
+/* register */
+#aboutMe-text{
+    margin-bottom: 0;
+}
+
+#max-char{
+    margin-bottom: 10px;
+    color: darkgray;
+    float: right;
+}
+
+#register-btn {    
+    margin-top: 25px;
+    margin-bottom: 15px;
+}

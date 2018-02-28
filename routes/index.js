@@ -26,11 +26,13 @@ router.post("/register", (req, res) => {
     lastname: req.body.lastname,
     email: req.body.email,
     username: req.body.username,
-    avatar: req.body.avatar
+    avatar: req.body.avatar,
+    aboutme: req.body.aboutme
   });
   if(req.body.admin === 'myresourceApp'){
     newUser.isAdmin = true;
   } //Checks if the admin field has the correct password.
+  eval(require('locus'))
   User.register(newUser, req.body.password, (err, createduser) => {
     if (err) {
       console.log(err);
