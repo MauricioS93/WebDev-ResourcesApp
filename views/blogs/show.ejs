@@ -1,6 +1,7 @@
 <% include ../partials/header%>
 
 
+<!-- Post Information -->
 <div class="ui main text container">
     <div class="ui huge header">
         <%= blog.title %>
@@ -23,7 +24,7 @@
                     <%- blog.body %>
                 </p>
             </div>
-            <% if(currentUser && blog.author.id.equals(currentUser._id)){%>
+            <% if(currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){%>
                 <div class="btn ui animated basic green button" tabindex="0">
                     <div class="visible content">Edit</div>
                     <div class="hidden content">
@@ -72,7 +73,7 @@
                                 <%= comment.text %>
                             </p>
                         </div>
-                        <% if(currentUser && comment.author.id.equals(currentUser._id)){%>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){%>
                         <div class="actions">
                             <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="reply">Edit</a>
                         </div>

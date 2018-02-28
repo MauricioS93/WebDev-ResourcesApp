@@ -4,12 +4,15 @@
 	<div class="ui huge header">
 		<h1>Resources for Web Development</h1>
 	</div>
+	<!-- <% if(currentUser && currentUser.isAdmin) {%>
+		<h1>You are an admin!</h1>
+	<%}%> -->
 	<div class="ui top attached segment">
 		<div class="ui divided items">
 			<% blogs.forEach(blog => { %>
 				<div class="item">
 					<div class="image">
-						<img src="<%= blog.image %>">						
+						<img src="<%= blog.image %>">	
 					</div>
 					<div class="content">
 						<a class="header" href="/blogs/<%= blog._id %>"><%= blog.title %></a>
@@ -27,7 +30,7 @@
                                 </div>
                             </div> 
 						</div>
-					</div>														
+					</div>				
 				</div>
 			<% }) %>
 		</div>

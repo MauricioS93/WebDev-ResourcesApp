@@ -25,7 +25,10 @@ router.post("/register", (req, res) => {
     email: req.body.email,
     username: req.body.username
   });
-
+  // eval(require('locus')); //THis is a package that allows me to stop the code wherever i put it and see what are the variables i have available to use.
+  if(req.body.admin === 'myresourceApp'){
+    newUser.isAdmin = true;
+  } //Checks if the admin field has the correct password.
   User.register(newUser, req.body.password, (err, createduser) => {
     if (err) {
       console.log(err);
@@ -33,7 +36,7 @@ router.post("/register", (req, res) => {
     } else {
       passport.authenticate("local")(req, res, () => {
         res.redirect("/blogs");
-      }); //Same passport.authenticate that we are using in line 47, the difference is that here i am registering a user and automatically login it. As of line 47 which only loggs in when there is a success, we assume the username is register.
+      }); //Same passport.authenticate that we are using in router.post('/login'), the difference is that here i am registering a user and automatically login it. As of router.post('/login') which only loggs in when there is a success, we assume the username is register.
     }
   });
 });

@@ -12,7 +12,7 @@ middlewareObj.checkBlogOwnership = (req, res, next) => {
 // console.log(updateBlog.blog.id); this is a mongoose object ID
 // console.log(req.user._id); This is a string.
 // when compering they are not the same so you have to use a mongoose method called .equals()
-                if(updateBlog.author.id.equals(req.user.id)){
+                if(updateBlog.author.id.equals(req.user.id) || req.user.isAdmin){
                     next(); 
 //This next() means that once i checked if user is Logged in (isAuthenticated()), found the blog and finally check if the user.id is the same as the creator of that blog, i want to run a code depending on what route i am on. for example show the edit form.
                 } else {
@@ -33,7 +33,7 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
         if (err) {
           res.redirect("back");
         } else {
-          if(foundComment.author.id.equals(req.user._id)){
+          if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin){
             next();
           } else {
             res.send('this is not your comment to edit or delete');
