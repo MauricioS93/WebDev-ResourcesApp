@@ -66,6 +66,17 @@ router.get("/logout", (req, res) => {
 // =====================
 // USERS PROFILES
 // =====================
+router.get('/users', (req, res) => {
+  var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+  User.find({}, (err, users) => {
+    if(err){
+      res.redirect('back');
+    } else {
+      res.render('users/show', {users: users, months: monthNames});
+    }
+  });
+});
 
 router.get('/users/:id', (req, res) => {
   User.findById(req.params.id, (err, foundUser) => {
@@ -76,7 +87,7 @@ router.get('/users/:id', (req, res) => {
         if(err){
           res.redirect('back');
         } else {
-        res.render('users/show', {user: foundUser, blogs: foundBlog});
+        res.render('users/showOne', {user: foundUser, blogs: foundBlog});
         }
       });
     }

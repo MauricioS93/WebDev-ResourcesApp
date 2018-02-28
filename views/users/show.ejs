@@ -1,31 +1,35 @@
 <% include ../partials/header%>
 
-<div class="ui main text container">
-    <h1>Users Profile</h1>
-    <%=blogs.name%>
+<div class="main-title">
+    <h1>Users Profile Page</h1>
 </div>
 <div class="ui container grid middle-content">
-    <div class="four wide column">
+    <% users.forEach(user => { %>
+    <div class="three wide column">
         <div class="ui card">
             <div class="image">
                 <img src="<%=user.avatar%>">
             </div>
             <div class="content">
-                <div class="header"><%=user.name%></div>
-                <div class="description">
-                    <ul>
-                        <% blogs.forEach(blog => { %>
-                            <li>
-                                <a href="/blogs/<%=blog.id%>">
-                                    <%= blog.title %>
-                                </a>
-                            </li>
-                        <% }) %>
-                    </ul>
+                <a href="/users/<%=user._id%>">
+                    <div class="header"><%=user.name%></div>
+                </a>
+                <div class="meta">
+                <span class="date">Joined in <%= months[user.memberSince.getMonth()]%>, <%= user.memberSince.getFullYear() %> </span>
                 </div>
+                <div class="description">
+                <%= user.aboutMe %>
+                </div>
+            </div>
+            <div class="extra content">
+                <a>
+                <i class="user icon"></i>
+                22 Friends
+                </a>
             </div>
         </div>
     </div>
+    <% }) %>
 </div>
 
 <% include ../partials/footer%>

@@ -10,3 +10,10 @@ $('#toggle').click(()=>{
 //Inside menu dropdown
 $('.ui .dropdown').dropdown();
 
+
+// Get months
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+
