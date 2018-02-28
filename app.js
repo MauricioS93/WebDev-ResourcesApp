@@ -19,7 +19,7 @@ let User = require('./models/users');
 // Require Routes
 let blogsRoute = require("./routes/blogs");
 let commentsRoute = require("./routes/comments");
-let authRoute = require('./routes/auth');
+let authRoute = require('./routes/index');
 
 // Require Seeds
 const seedDB = require("./seed");

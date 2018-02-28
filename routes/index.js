@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const passport = require("passport");
 const User = require("../models/users");
+const Blog = require("../models/blogs");
 
 //Root Route
 router.get("/", (req, res) => {
@@ -19,13 +20,14 @@ router.get("/register", (req, res) => {
 
 // Handle Sign Up Logic
 router.post("/register", (req, res) => {
-  var newUser = new User({
-    name: req.body.name,
-    lasname: req.body.name,
-    email: req.body.email,
-    username: req.body.username
-  });
   // eval(require('locus')); //THis is a package that allows me to stop the code wherever i put it and see what are the variables i have available to use.
+  let newUser = new User({
+    name: req.body.name,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    username: req.body.username,
+    avatar: req.body.avatar
+  });
   if(req.body.admin === 'myresourceApp'){
     newUser.isAdmin = true;
   } //Checks if the admin field has the correct password.
@@ -59,6 +61,26 @@ router.post(
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/blogs");
+});
+
+// =====================
+// USERS PROFILES
+// =====================
+
+router.get('/users/:id', (req, res) => {
+  User.findById(req.params.id, (err, foundUser) => {
+    if(err){
+      res.redirect('back');
+    } else {
+      Blog.find().where('author.id').equals(foundUser.id).exec((err, foundBlog) => {
+        if(err){
+          res.redirect('back');
+        } else {
+        res.render('users/show', {user: foundUser, blogs: foundBlog});
+        }
+      });
+    }
+  });
 });
 
 module.exports = router;

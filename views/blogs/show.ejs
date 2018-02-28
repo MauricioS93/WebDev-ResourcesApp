@@ -11,7 +11,8 @@
             <img class="ui fluid image" src="<%= blog.image%>">
             <div class="metadata" id="metadata-blogcreatedby">
                     <span>
-                        Submitted By: <%= blog.author.username %>
+                        Submitted By: 
+                        <a href="/users/<%=blog.author.id%>"><%= blog.author.username %></a>
                     </span>
                 </div>
             <div class="metadata" id="metadata-blogcreated">
