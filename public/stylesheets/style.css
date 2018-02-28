@@ -5,12 +5,14 @@ i.icon {
 
 body{
     box-sizing: border-box;
+    min-height: 100vh;
 }
 
 /* BLOGS PAGE */
 .container.segment, .main.text.container {
     margin-top: 5em;
     width: 75%;
+    margin-bottom: 30px;
 }
 
 /* BUTTONS */
