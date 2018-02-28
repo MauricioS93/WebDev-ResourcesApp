@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const Blog = require('../models/blogs');
 const middleware = require('../middleware/index');
+const Comment = require("../models/comments");
 
 // ====================
 // BLOGS ROUTE
@@ -78,11 +79,25 @@ router.put('/blogs/:id', middleware.checkBlogOwnership, (req, res) => {
 
 // Remove Route
 router.delete('/blogs/:id', middleware.checkBlogOwnership, (req, res) => {
-    Blog.findByIdAndRemove(req.params.id, err => {
-        if (err){
-            res.redirect('/blogs');
+    Blog.findById(req.params.id, (err, foundBlog) => {
+        if(err){
+            res.redirect('back');
         } else {
-            res.redirect('/blogs');
+            Comment.remove({
+                _id: {
+                    $in: foundBlog.comments
+                }
+            }, (err) => {
+                console.log(err);
+            });
+            foundBlog.remove(err => {
+                if(err){
+                    res.redirect('back');
+                    console.log(err);
+                } else {
+                    res.redirect('/blogs');
+                }
+            });
         }
     });
 });
