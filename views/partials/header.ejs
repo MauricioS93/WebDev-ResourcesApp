@@ -82,3 +82,15 @@
             <i class="sidebar icon"></i>Menu
         </a>
     </div>
+
+    <div class="main-container">
+        <%if (success && success.length > 0 ) {%>
+        <div class="ui success message flash-msg">
+            <p><%= success %></p>
+        </div>
+        <% } %>
+        <%if (error && error.length > 0 ) {%>
+        <div class="ui negative message flash-msg">
+            <p><%= error %></p>
+        </div>
+        <% } %>

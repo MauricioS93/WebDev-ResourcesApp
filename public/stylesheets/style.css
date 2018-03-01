@@ -8,11 +8,15 @@ body{
     min-height: 100vh;
 }
 
+.main-container{
+    min-height: 75vh;
+}
 /* BLOGS PAGE */
-.container.segment, .main.text.container, .container.grid {
-    margin-top: 5em;
+.main-container {
+    margin: 50px auto;
+    margin-top: 75px;
     width: 75%;
-    margin-bottom: 30px;
+    
 }
 
 /* BUTTONS */
@@ -65,9 +69,6 @@ a#readMore {
 @media (max-width: 700px){
     .ui.sidebar {
         overflow: visible !important;
-    }
-    .container.segment, .main.text.container {
-        margin-top: 5em;
     }
     #desktop{
         display: none;
@@ -143,10 +144,10 @@ i {
 
 /* USERS ROUTE */
 
-.main-title {
+/* .main-title {
     margin-top: 7em;
     margin-left: 75px;
-}
+} */
 #avatar-users img{
     height: 150px;
 }
@@ -175,4 +176,10 @@ i {
 #register-btn {    
     margin-top: 25px;
     margin-bottom: 15px;
+}
+
+/* FLASH */
+.ui.message.flash-msg {
+    width: 74%;
+    margin: 20px auto;
 }

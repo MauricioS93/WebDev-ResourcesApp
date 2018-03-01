@@ -39,7 +39,7 @@ router.post("/blogs", middleware.isLoggedIn, (req, res) => {
         if(err){
             res.render('blogs/new');
         } else {
-            // console.log(newBlog); just to check
+            req.flash('success', 'Thank you, post successfully created');
             res.redirect('/blogs');
         }
     });
@@ -72,6 +72,7 @@ router.put('/blogs/:id', middleware.checkBlogOwnership, (req, res) => {
         if(err) {
             res.redirect('back');
         } else {
+            req.flash("success", "Comment successfully updated!");
             res.redirect('/blogs/' + req.params.id);
         }
     });
@@ -95,6 +96,7 @@ router.delete('/blogs/:id', middleware.checkBlogOwnership, (req, res) => {
                     res.redirect('back');
                     console.log(err);
                 } else {
+                    req.flash("success", "Post successfully deleted!");
                     res.redirect('/blogs');
                 }
             });

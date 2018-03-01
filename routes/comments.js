@@ -36,7 +36,7 @@ router.post("/blogs/:id/comments", middleware.isLoggedIn, (req, res) => {
           //connect new commento to blog post
           blog.comments.push(comments._id);
           blog.save();
-          // console.log(comments);
+          req.flash('success', 'Thank you, comment successfully created!');
           res.redirect("/blogs/" + blog._id);
         }
       });
@@ -68,6 +68,7 @@ router.delete('/blogs/:id/comments/:comment_id', middleware.checkCommentOwnershi
         if(err) {
             res.redirect('back');
         } else {
+            req.flash("success", "Comment successfully deleted!");
             res.redirect('/blogs/' + req.params.id);
         }
     });
