@@ -9,7 +9,7 @@ body{
 }
 
 /* BLOGS PAGE */
-.container.segment, .main.text.container {
+.container.segment, .main.text.container, .container.grid {
     margin-top: 5em;
     width: 75%;
     margin-bottom: 30px;
@@ -149,6 +149,16 @@ i {
 }
 #avatar-users img{
     height: 150px;
+}
+
+.users-card{
+    min-width: 150px;
+    max-height: 340px;
+    min-height: 340px;
+}
+
+.user-description{
+    min-height: 60px;
 }
 
 /* register */
