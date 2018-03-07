@@ -6,6 +6,38 @@ const Comment = require("../models/comments");
 const functions = require('../middleware/functions');
 
 // ====================
+// IMAGE UPLOADING SETUP
+// ====================
+
+const multer = require('multer');
+let storage = multer.diskStorage({
+    filename: function(req, file, cb){
+        cb(null, Date.now() + '-' + file.fileOriginalName);
+    }
+});
+let imageFilter = function(req, file, cb){
+    if(!file.fileOriginalName.match(/\.(jpg|jpeg|png|gif)$/i)){
+        return cb(new Error("Only Images Files are allowed"), false);
+    }
+    cb(null, true);
+};
+
+let upload = multer({storage: storage, imageFilter: imageFilter});
+
+// ====================
+// CLOUDINARY SETUP
+// ====================
+
+
+let cloudinary = require('cloudinary');
+cloudinary.config({ 
+    cloud_name: 'msarmiento90', 
+    api_key: 687446554825594, 
+    api_secret: 'f9T6dWlUcCihLT2alEeeZvMHkJo', 
+});  
+  
+
+// ====================
 // BLOGS ROUTE
 // ====================
 
@@ -41,23 +73,23 @@ router.get("/blogs/new", middleware.isLoggedIn, (req, res) => {
 });
 
 //CREATE / a new blog
-router.post("/blogs", middleware.isLoggedIn, (req, res) => {
+router.post("/blogs", middleware.isLoggedIn, upload.single('image'), (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    let title = req.body.blog.title;
-    let image = req.body.blog.image;
-    let body = req.body.blog.body;
-    let author = {
-        id: req.user._id,
-        username: req.user.username
-    };
-    let newBlog = {title: title, image: image, body: body, author: author};
-    Blog.create(newBlog, (err, newBlog) => {
-        if(err){
-            res.render('blogs/new');
-        } else {
-            req.flash('success', 'Thank you, post successfully created');
-            res.redirect('/blogs');
-        }
+    cloudinary.uploader.upload(req.file.path, results => {
+        req.body.blog.image = results.secure_url;
+        req.body.blog.author = {
+            id: req.user._id,
+            username: req.user.username
+        };
+        Blog.create(req.body.blog, (err, newBlog) => {
+            if(err){
+                req.flash('error', err.message);
+                res.render('blogs/new');
+            } else {
+                req.flash('success', 'Thank you, post successfully created');
+                res.redirect('/blogs/' + newBlog.id);
+            }
+        });
     });
 });
 

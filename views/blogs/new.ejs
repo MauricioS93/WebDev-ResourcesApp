@@ -4,14 +4,14 @@
     <div class="ui huge header">
         New Resource
     </div>
-    <form class="ui form" action="/blogs" method="POST">
+    <form class="ui form" action="/blogs" method="POST" enctype="multipart/form-data">
         <div class="field">
             <label> Title </label>
             <input class="" type="text" name="blog[title]" placeholder="Source Title">
         </div>
         <div class="field">
-            <label> Image </label>
-            <input type="text" name="blog[image]" placeholder="Image">
+            <label for="image"> Image </label>
+            <input type="file" id="image" name="image" accept="image/*" required>
         </div>
         <div class="field">
             <label> Description </label>
