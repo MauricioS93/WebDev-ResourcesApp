@@ -4,18 +4,30 @@
 	<div class="ui huge header">
 		<h1>Resources for Web Development</h1>
 	</div>
-	<!-- <% if(currentUser && currentUser.isAdmin) {%>
-		<h1>You are an admin!</h1>
-	<%}%> -->
+	<div>
+		<form class="ui form" action="/blogs" method="GET">
+			<div class="ui category search">
+				<div class="ui icon input">	
+					<input type="text" name="search" placeholder="Search Blog...">	
+				</div>
+				<button class="ui blue inverted button">Search</button>
+			</div>
+		</form>
+	</div>
 	<div class="ui top attached segment">
 		<div class="ui divided items">
+			<div class="item">
+				<%if(noMatch !== undefined) {%>
+					<h3> <%= noMatch %></h3>
+				<%}%>
+			</div>
 			<% blogs.forEach(blog => { %>
 				<div class="item">
 					<div class="image">
 						<img src="<%= blog.image %>">	
 					</div>
 					<div class="content">
-						<a class="header" href="/blogs/<%= blog._id %>"><%= blog.title %></a>
+						<div class="header" href="/blogs/<%= blog._id %>"><%= blog.title %></div>
 						<div class="meta">
 							<span><%= blog.created.toDateString()%></span>	
 						</div>

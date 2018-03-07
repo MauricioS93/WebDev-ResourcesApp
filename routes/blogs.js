@@ -3,6 +3,7 @@ const router = express.Router({mergeParams: true});
 const Blog = require('../models/blogs');
 const middleware = require('../middleware/index');
 const Comment = require("../models/comments");
+const functions = require('../middleware/functions');
 
 // ====================
 // BLOGS ROUTE
@@ -10,13 +11,28 @@ const Comment = require("../models/comments");
 
 //Index Route
 router.get("/blogs", (req, res) => {
-  Blog.find({}, (err, blogs) => {
-    if (err) {
-      console.log(err);
+    let noMatch;
+    if(req.query.search){
+        const regex = new RegExp(functions.escapeRegex(req.query.search), 'gi');
+        Blog.find({title: regex}, (err, blogs) => {
+            if (err) {
+            console.log(err);
+            } else {
+                if(blogs.length < 1){
+                    noMatch = "No Blog found under that name, please try again with a different name";
+                }
+                res.render("blogs/index", { blogs: blogs, noMatch: noMatch});
+            }
+        });
     } else {
-      res.render("blogs/index", { blogs: blogs});
+        Blog.find({}, (err, blogs) => {
+            if (err) {
+            console.log(err);
+            } else {
+            res.render("blogs/index", { blogs: blogs, noMatch: noMatch});
+            }
+        });
     }
-  });
 });
 
 //NEW / Show the new form
@@ -103,5 +119,9 @@ router.delete('/blogs/:id', middleware.checkBlogOwnership, (req, res) => {
         }
     });
 });
+
+// function escapeRegex(text) {
+//     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+// }
 
 module.exports = router;
