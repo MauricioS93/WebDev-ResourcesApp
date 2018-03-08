@@ -4,6 +4,7 @@ const Blog = require('../models/blogs');
 const middleware = require('../middleware/index');
 const Comment = require("../models/comments");
 const functions = require('../middleware/functions');
+const dotenv = require('dotenv').config();
 
 // ====================
 // IMAGE UPLOADING SETUP
@@ -32,8 +33,8 @@ let upload = multer({storage: storage, imageFilter: imageFilter});
 let cloudinary = require('cloudinary');
 cloudinary.config({ 
     cloud_name: 'msarmiento90', 
-    api_key: 687446554825594, 
-    api_secret: 'f9T6dWlUcCihLT2alEeeZvMHkJo', 
+    api_key: process.env.CLOUDINARY_API_KEY, 
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });  
   
 
