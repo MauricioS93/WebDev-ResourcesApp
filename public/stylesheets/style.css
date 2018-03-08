@@ -208,3 +208,15 @@ i {
     width: 230px;
     margin-right: 5px;
 }
+
+/* FOOTER */
+.four.column.SMedia {
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 50px;
+    width: 500px !important;
+}
+
+.four.column.SMedia > a {
+    color: rgba(255,255,255,.5);
+}
