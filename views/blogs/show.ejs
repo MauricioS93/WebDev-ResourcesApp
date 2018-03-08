@@ -26,6 +26,11 @@
                     <%- blog.body %>
                 </p>
             </div>
+            <div class="link-showPage-Div">
+                Link to Resource:
+                <a class="step link-showPage"><%= blog.link %></a>
+            </div>
+
             <% if(currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){%>
                 <div class="btn ui animated basic green button" tabindex="0">
                     <div class="visible content">Edit</div>

@@ -47,7 +47,7 @@ router.get("/blogs", (req, res) => {
     let noMatch;
     if(req.query.search){
         const regex = new RegExp(functions.escapeRegex(req.query.search), 'gi');
-        Blog.find({title: regex}, (err, blogs) => {
+        Blog.find({ $or: [{tag: regex}, {title: regex}]}, (err, blogs) => {
             if (err) {
             console.log(err);
             } else {
