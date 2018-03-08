@@ -11,6 +11,7 @@ div#lan-header {
     display: grid;
     grid-template-rows: 1fr 1fr;
     align-items: center;
+    height: 160px;
 }
 
 .lan-head-center {
@@ -35,4 +36,36 @@ h1.lan-head-center{
 
 #search-landing {
     margin: 0 auto;
+}
+
+/* CARDS */
+
+.ui.card.landing-cards{
+    min-height: 300px;
+    max-height: 300px;
+}
+
+@media (max-width: 768px){
+    .ui.card.landing-cards{
+        margin: 0 auto;
+    }
+    #search-landing{
+        margin-bottom: 15px;
+    }
+    .ui.icon.input {
+        width: 210px;
+        margin-right: 5px;
+    }
+    .ui.icon.input > input {
+        padding-right: 10px !important;
+    }
+}
+
+@media (max-width: 475px){
+    #search-landing{
+        text-align: center;
+    }
+    .ui.icon.input {
+        margin-bottom: 10px;
+    }
 }
