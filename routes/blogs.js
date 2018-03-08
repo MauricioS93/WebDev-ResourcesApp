@@ -12,11 +12,11 @@ const functions = require('../middleware/functions');
 const multer = require('multer');
 let storage = multer.diskStorage({
     filename: function(req, file, cb){
-        cb(null, Date.now() + '-' + file.fileOriginalName);
+        cb(null, Date.now() + '-' + file.filename);
     }
 });
 let imageFilter = function(req, file, cb){
-    if(!file.fileOriginalName.match(/\.(jpg|jpeg|png|gif)$/i)){
+    if(!file.filename.match(/\.(jpg|jpeg|png|gif)$/i)){
         return cb(new Error("Only Images Files are allowed"), false);
     }
     cb(null, true);
@@ -75,8 +75,13 @@ router.get("/blogs/new", middleware.isLoggedIn, (req, res) => {
 //CREATE / a new blog
 router.post("/blogs", middleware.isLoggedIn, upload.single('image'), (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    cloudinary.uploader.upload(req.file.path, results => {
-        req.body.blog.image = results.secure_url;
+    cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
+        if(err){
+            req.flash('error', err.message);
+            return res.redirect('back');
+        }
+        req.body.blog.image = result.secure_url;
+        req.body.blog.image_id = result.public_id;
         req.body.blog.author = {
             id: req.user._id,
             username: req.user.username
@@ -114,16 +119,54 @@ router.get('/blogs/:id/edit', middleware.checkBlogOwnership,(req,res) => {
 });
 
 // Update Route - Send information from form and update database
-router.put('/blogs/:id', middleware.checkBlogOwnership, (req, res) => {
+router.put('/blogs/:id', middleware.checkBlogOwnership, upload.single('image'), (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedPost) => {
-        if(err) {
-            res.redirect('back');
-        } else {
-            req.flash("success", "Comment successfully updated!");
+    //If new file has been updated
+    if(req.file){
+        Blog.findById(req.params.id, (err, updatedPost) => {
+            if(err){
+                req.flash('error', err.message);
+                return res.redirect('back');
+            }
+            // delete the file from clodinary
+            cloudinary.v2.uploader.destroy(updatedPost.image_id, function(err, result){
+                if(err) {
+                  req.flash('error', err.message);
+                  return res.redirect('back');
+                }
+                // upload new image
+                cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
+                    if(err){
+                        req.flash('error', err.message);
+                        return res.redirect('back');
+                    }
+                    //add cloudinary secure url to the blog object
+                    req.body.blog.image = result.secure_url;
+                    //add image's public_id to blog obkect
+                    req.body.blog.image_id = result.public_id;
+                    // eval(require('locus'));
+                    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedPost) => {
+                        // eval(require('locus'));
+                        if(err){
+                            req.flash('error', err.message);
+                            return res.redirect('back');
+                        }
+                        req.flash('success', 'Blog successfully updated!');
+                        res.redirect('/blogs/' + updatedPost._id);
+                    });
+                });
+            });
+        });
+    } else {
+        Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedPost) => {
+            if(err) {
+                req.flash('error', err.message);
+                return res.redirect('back');
+            }
+            req.flash("success", "Blog successfully updated!");
             res.redirect('/blogs/' + req.params.id);
-        }
-    });
+        });
+    }
 });
 
 // Remove Route
@@ -139,21 +182,22 @@ router.delete('/blogs/:id', middleware.checkBlogOwnership, (req, res) => {
             }, (err) => {
                 console.log(err);
             });
-            foundBlog.remove(err => {
+            cloudinary.v2.uploader.destroy(foundBlog.image_id, function(err, result){
                 if(err){
-                    res.redirect('back');
-                    console.log(err);
-                } else {
+                    req.flash('error', err.message);
+                    return res.redirect('back');
+                }
+                foundBlog.remove(err => {
+                    if(err){
+                        req.flash('error', err.message);
+                        return res.redirect('back');
+                    }
                     req.flash("success", "Post successfully deleted!");
                     res.redirect('/blogs');
-                }
+                });
             });
         }
     });
 });
-
-// function escapeRegex(text) {
-//     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-// }
 
 module.exports = router;

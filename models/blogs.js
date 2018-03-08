@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 let blogSchema = new Schema ({
     title: String,
     image: String,
+    image_id: String,
     body: String,
     created: {
         type: Date,

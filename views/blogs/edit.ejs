@@ -4,14 +4,14 @@
         <div class="ui huge header">
             Edit Resource: <%= blog.title %>
         </div>
-        <form class="ui form" action="/blogs/<%=blog._id%>?_method=PUT" method="POST">
+        <form class="ui form" action="/blogs/<%=blog._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="field">
                 <label> Title </label>
                 <input type="text" name="blog[title]" value="<%= blog.title %>">
             </div>
             <div class="field">
-                <label> Image </label>
-                <input type="text" name="blog[image]" value="<%= blog.image %>">
+                <label for="image"> Image </label>
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
             <div class="field">
                 <label> Description </label>
