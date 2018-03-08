@@ -28,6 +28,7 @@
 					</div>
 					<div class="content">
 						<div class="header" href="/blogs/<%= blog._id %>"><%= blog.title %></div>
+						<span href="#" class="ui tag label tag-indexPage"><%= blog.tag.toUpperCase() %></span>
 						<div class="meta">
 							<span><%= blog.created.toDateString()%></span>	
 						</div>

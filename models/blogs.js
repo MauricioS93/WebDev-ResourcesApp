@@ -5,7 +5,9 @@ let blogSchema = new Schema ({
     title: String,
     image: String,
     image_id: String,
+    tag: String,
     body: String,
+    link: String,
     created: {
         type: Date,
         default: Date.now

@@ -40,7 +40,7 @@ router.post("/register", (req, res) => {
     } else {
         passport.authenticate("local")(req, res, () => {
         req.flash("success", "Welcome to WebDev Blog " + createduser.name + ' ' + createduser.lastname);
-        res.redirect("/blogs");
+        res.redirect("back");
       }); //Same passport.authenticate that we are using in router.post('/login'), the difference is that here i am registering a user and automatically login it. As of router.post('/login') which only loggs in when there is a success, we assume the username is register.
     }
   });
@@ -64,7 +64,7 @@ router.post(
 router.get("/logout", (req, res) => {
   req.logout();
   req.flash('success', 'Logged you out!');
-  res.redirect("/blogs");
+  res.redirect("back");
 });
 
 // =====================

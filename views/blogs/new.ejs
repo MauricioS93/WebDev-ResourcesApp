@@ -5,13 +5,25 @@
         New Resource
     </div>
     <form class="ui form" action="/blogs" method="POST" enctype="multipart/form-data">
-        <div class="field">
-            <label> Title </label>
-            <input class="" type="text" name="blog[title]" placeholder="Source Title">
+        <div class="two fields">
+            <div class="field">
+                <label> Title </label>
+                <input type="text" name="blog[title]" placeholder="Resource Title">
+            </div>
+            <div class="field">
+                <label for="tag">Tag</label>
+                <input type="text" id="tag" name="blog[tag]" placeholder="CSS, CS, JS, Ruby" required>
+            </div>
         </div>
-        <div class="field">
-            <label for="image"> Image </label>
-            <input type="file" id="image" name="image" accept="image/*" required>
+        <div class="two fields">
+            <div class="field">
+                <label for="image"> Image </label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <div class="field">
+                <label for="link">Source URL</label>
+                <input type="text" id="link" name="blog[link]" placeholder="Paste the resource url here..." required>
+            </div>
         </div>
         <div class="field">
             <label> Description </label>

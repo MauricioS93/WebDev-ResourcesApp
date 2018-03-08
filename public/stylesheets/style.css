@@ -142,12 +142,11 @@ i {
     margin-top: 20px;
 }
 
-/* USERS ROUTE */
+.ui.fluid.image.show-img{
+    height: 250px;
+}
 
-/* .main-title {
-    margin-top: 7em;
-    margin-left: 75px;
-} */
+/* USERS ROUTE */
 #avatar-users img{
     height: 150px;
 }
@@ -182,4 +181,13 @@ i {
 .ui.message.flash-msg {
     width: 74%;
     margin: 20px auto;
+}
+
+/* TAGS */
+.tag-indexPage{
+    float: right;
+}
+
+.ui.tag.label.tag-showPage {
+    margin-left: 1.6rem;
 }
