@@ -5,6 +5,7 @@ const middleware = require('../middleware/index');
 const Comment = require("../models/comments");
 const functions = require('../middleware/functions');
 const dotenv = require('dotenv').config();
+const User = require("../models/users");
 
 // ====================
 // IMAGE UPLOADING SETUP
@@ -74,7 +75,7 @@ router.get("/blogs/new", middleware.isLoggedIn, (req, res) => {
 });
 
 //CREATE / a new blog
-router.post("/blogs", middleware.isLoggedIn, upload.single('image'), (req, res) => {
+router.post("/blogs", middleware.isLoggedIn , upload.single('image'), (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
         if(err){
@@ -90,11 +91,16 @@ router.post("/blogs", middleware.isLoggedIn, upload.single('image'), (req, res) 
         Blog.create(req.body.blog, (err, newBlog) => {
             if(err){
                 req.flash('error', err.message);
-                res.render('blogs/new');
-            } else {
+                return res.render('blogs/new');
+            }
+            User.findByIdAndUpdate(newBlog.author.id, { $inc: { count: 1 }}, (err, user) => {
+                if(err){
+                    req.flash('error', err.message);
+                    return res.redirect('back');
+                }
                 req.flash('success', 'Thank you, post successfully created');
                 res.redirect('/blogs/' + newBlog.id);
-            }
+            });
         });
     });
 });

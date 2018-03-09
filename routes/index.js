@@ -74,6 +74,7 @@ router.get('/users', (req, res) => {
   var monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
   User.find({}, (err, users) => {
+    // eval(require('locus'));
     if(err){
       res.redirect('back');
     } else {

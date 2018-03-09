@@ -5,14 +5,14 @@
 </div>
 <div class="ui container grid middle-content">
     <% users.forEach(user => { %>
-    <div class="three wide column users-card">
+    <div class="four wide column users-card">
         <div class="ui card">
             <div class="image" id="avatar-users">
                 <img src="<%=user.avatar%>">
             </div>
             <div class="content">
                 <a href="/users/<%=user._id%>">
-                    <div class="header"><%=user.name%></div>
+                    <div class="header"><%=user.username%></div>
                 </a>
                 <div class="meta">
                 <span class="date">Joined in <%= months[user.memberSince.getMonth()]%>, <%= user.memberSince.getFullYear() %> </span>
@@ -22,9 +22,9 @@
                 </div>
             </div>
             <div class="extra content">
-                <a>
-                <i class="user icon"></i>
-                22 Friends
+                <a href="/users/<%=user.id%>">
+                <i class="edit outline icon"></i>
+                # of Posts: <bold><%= user.count %></bold>
                 </a>
             </div>
         </div>
