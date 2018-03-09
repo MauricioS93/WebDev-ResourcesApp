@@ -97,9 +97,7 @@ router.post(
           return res.render("blogs/new");
         }
         User.findByIdAndUpdate(
-          newBlog.author.id,
-          { $inc: { count: 1 } },
-          (err, user) => {
+          newBlog.author.id, { $inc: { count: 1 } }, (err, user) => {
             if (err) {
               req.flash("error", err.message);
               return res.redirect("back");
