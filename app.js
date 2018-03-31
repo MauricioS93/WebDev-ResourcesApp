@@ -64,6 +64,6 @@ app.use(commentsRoute);
 app.use(authRoute);
 
 // Listen route
-app.listen(8080, "localhost", function() {
+app.listen((process.env.PORT || 8080), "localhost", function() {
   console.log("Server is running");
 });
