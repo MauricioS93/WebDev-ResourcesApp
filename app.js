@@ -27,8 +27,8 @@ const seedDB = require("./seed");
 // seedDB();
 
 // App configuration
-// mongoose.connect("mongodb://localhost/resourcesApp");
-mongoose.connect("mongodb://Msarmiento:micho123@ds147510.mlab.com:47510/webdev-app");
+mongoose.connect(process.env.MONGODBURL);
+// mongoose.connect("mongodb://Msarmiento:micho123@ds147510.mlab.com:47510/webdev-app");
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -64,6 +64,6 @@ app.use(commentsRoute);
 app.use(authRoute);
 
 // Listen route
-app.listen(process.env.PORT, function() {
+app.listen(process.env.PORT || 8080, function() {
   console.log("Server is running");
 });
