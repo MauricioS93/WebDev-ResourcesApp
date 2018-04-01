@@ -1,37 +1,38 @@
 div#lan-header {
-    margin-top: 56px;
-    height: 250px;
-    display: grid;
-    grid-template-columns: 1fr;
-    background: #1b1c1d69;
-    align-items: center;
+  margin-top: 56px;
+  height: 250px;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #1b1c1d69;
+  align-items: center;
 }
 
 .lan-head-container {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
-    height: 160px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  height: 160px;
 }
 
 .lan-head-center {
-    margin: 0;
-    align-content: center;
-    height: 50px;
-    margin: 0 15px;
+  margin: 0;
+  align-content: center;
+  height: 50px;
+  margin: 0 15px;
 }
 
 h1.lan-head-center{
-    color: rgba(0, 0, 0, 0.616);
+  color: rgba(0, 0, 0, 0.616);
 }
 
 /* MIDDLE CONTENT */
 .ui.vertical.stripe.segment {
-    margin: 20px;
+  margin: 20px;
 }
 .ui.middle-content{
-    margin: 25px 10px;
-    margin-bottom: 60px;
+  margin: 25px 10px;
+  margin-bottom: 60px;
+  justify-content: center;
 }
 
 #search-landing {
@@ -40,32 +41,52 @@ h1.lan-head-center{
 
 /* CARDS */
 
-.ui.card.landing-cards{
-    min-height: 300px;
-    max-height: 300px;
+.ui.card {
+  min-height: 407px;
+  max-height: 407px;
+}
+
+@media (max-width: 918px){
+  .ui.card {
+    min-height: 462px;
+    max-height: 462px;
+  }
 }
 
 @media (max-width: 768px){
-    .ui.card.landing-cards{
-        margin: 0 auto;
-    }
-    #search-landing{
-        margin-bottom: 15px;
-    }
-    .ui.icon.input {
-        width: 210px;
-        margin-right: 5px;
-    }
-    .ui.icon.input > input {
-        padding-right: 10px !important;
-    }
+  .ui.card.landing-cards{
+      margin: 0 auto;
+  }
+  #search-landing{
+      margin-bottom: 15px;
+  }
+  .ui.icon.input {
+      width: 210px;
+      margin-right: 5px;
+  }
+  .ui.icon.input > input {
+      padding-right: 10px !important;
+  }
+}
+
+@media (max-width: 453px){
+  .ui.container.grid.middle-content {
+    justify-content: center;
+  }
+  .four.wide.column.users-card {
+    width: 80% !important;
+    margin-bottom: 35px;
+  }
+  .ui.card{
+    min-height: 350px;
+  }
 }
 
 @media (max-width: 475px){
-    #search-landing{
-        text-align: center;
-    }
-    .ui.icon.input {
-        margin-bottom: 10px;
-    }
+  #search-landing{
+      text-align: center;
+  }
+  .ui.icon.input {
+      margin-bottom: 10px;
+  }
 }

@@ -27,7 +27,8 @@ const seedDB = require("./seed");
 // seedDB();
 
 // App configuration
-mongoose.connect(process.env.MONGODBURL);
+const url = process.env.MLABURL || process.env.MONGODBURL;
+mongoose.connect(url);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));

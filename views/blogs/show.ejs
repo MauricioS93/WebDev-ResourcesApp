@@ -1,101 +1,107 @@
 <% include ../partials/header%>
 
 
-<!-- Post Information -->
-<div class="ui main text container">
+  <!-- Post Information -->
+  <div class="ui main text container">
     <div class="ui huge header">
-        <%= blog.title %>
-        <div href="#" class="ui tag label tag-showPage"><%= blog.tag.toUpperCase() %></div>
+      <%= blog.title %>
+        <div href="#" class="ui tag label tag-showPage">
+          <%= blog.tag.toUpperCase() %>
+        </div>
     </div>
     <div class="ui top attached segment">
-        <div class="item">
-            <img class="ui fluid image show-img" src="<%= blog.image %>">
-            <div class="metadata" id="metadata-blogcreatedby">
-                    <span>
-                        Submitted By: 
-                        <a href="/users/<%=blog.author.id%>"><%= blog.author.username %></a>
-                    </span>
-                </div>
-            <div class="metadata" id="metadata-blogcreated">
-                <span>
-                    <%= blog.created.toDateString()%>
-                </span>
-            </div>
-            <div class="description" id="blog-body">
-                <p>
-                    <%- blog.body %>
-                </p>
-            </div>
-            <div class="link-showPage-Div">
-                Link to Resource:
-                <a class="step link-showPage"><%= blog.link %></a>
-            </div>
-
-            <% if(currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){%>
-                <div class="btn ui animated basic green button" tabindex="0">
-                    <div class="visible content">Edit</div>
-                    <div class="hidden content">
-                        <a id="edit" href="/blogs/<%= blog.id %>/edit">
-                            <i class="edit icon"></i>
-                        </a>
-                    </div>
-                </div>
-                <form class="btn btn-delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-                    <button class="ui animated basic red button" tabindex="0">
-                        <div class="visible content">Delete</div>
-                        <div class="hidden content">
-                            <i class="warning circle icon"></i>
-                        </div>
-                    </button>
-                </form>
-            <% } %>
+      <div class="item">
+        <img class="ui fluid image show-img" src="<%= blog.image %>">
+        <div class="metadata" id="metadata-blogcreatedby">
+          <span>
+            Submitted By:
+            <a href="/users/<%=blog.author.id%>">
+              <%= blog.author.username %>
+            </a>
+          </span>
         </div>
-    </div>
-</div>
+        <div class="metadata" id="metadata-blogcreated">
+          <span>
+            <%= blog.created.toDateString()%>
+          </span>
+        </div>
+        <div class="description" id="blog-body">
+          <p>
+            <%- blog.body %>
+          </p>
+        </div>
+        <div class="link-showPage-Div">
+          Link to Resource:
+          <a class="step link-showPage">
+            <%= blog.link %>
+          </a>
+        </div>
 
-        <!-- COMMENTS PORTION -->
-<div class="container main ui text comments">
+        <% if(currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){%>
+          <div class="btn ui animated basic green button" tabindex="0">
+            <div class="visible content">Edit</div>
+            <div class="hidden content">
+              <a id="edit" href="/blogs/<%= blog.id %>/edit">
+                <i class="edit icon"></i>
+              </a>
+            </div>
+          </div>
+          <form class="btn btn-delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+            <button class="ui animated basic red button" tabindex="0">
+              <div class="visible content">Delete</div>
+              <div class="hidden content">
+                <i class="warning circle icon"></i>
+              </div>
+            </button>
+          </form>
+          <% } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMENTS PORTION -->
+  <div class="container main ui text comments">
     <div class="ui comments">
-        <h3 class="ui dividing header">Comments</h3>
-        <span>
-            <a href="/blogs/<%= blog._id %>/comments/new" </a>New Comment</a>
-        </span>
-        <div class="ui segment raised">
-            <% blog.comments.forEach((comment) => { %>
-                <div class="comment">
-                    <a class="avatar">
-                        <img src="http://www.rsmhawaii.com/wp-content/uploads/2016/02/techguy-avatar-150x150.png">
-                    </a>
-                    <div class="content">
-                        <a class="author">
-                            <%= comment.author.username %>
-                        </a>
-                        <div class="metadata">
-                            <div class="date">
-                                <%=comment.created.toLocaleString()%>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <p>
-                                <%= comment.text %>
-                            </p>
-                        </div>
-                        <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){%>
-                        <div class="actions">
-                            <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="reply">Edit</a>
-                        </div>
-                        <div class="actions">
-                            <form class="btn btn-delete" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                <input type="submit" id="deleteComment" class="reply" value="Delete"></input>
-                            </form>
-                        </div>
-                        <div class="horizontal divider"></div>
-                        <%}%>
-                    </div>
+      <h3 class="ui dividing header">Comments</h3>
+      <span>
+        <a href="/blogs/<%= blog._id %>/comments/new" </a>New Comment</a>
+      </span>
+      <div class="ui segment raised">
+        <% blog.comments.forEach((comment) => { %>
+          <div class="comment">
+            <a class="avatar">
+              <img src="http://www.rsmhawaii.com/wp-content/uploads/2016/02/techguy-avatar-150x150.png">
+            </a>
+            <div class="content">
+              <a class="author">
+                <%= comment.author.username %>
+              </a>
+              <div class="metadata">
+                <div class="date">
+                  <%=comment.created.toLocaleString()%>
                 </div>
-            <% })%>    
-        </div>
+              </div>
+              <div class="text">
+                <p>
+                  <%= comment.text %>
+                </p>
+              </div>
+              <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){%>
+                <div class="actions">
+                  <a href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit" class="reply">Edit</a>
+                </div>
+                <div class="actions">
+                  <form class="btn btn-delete" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                    <input type="submit" id="deleteComment" class="reply" value="Delete"></input>
+                  </form>
+                </div>
+                <div class="horizontal divider"></div>
+                <%}%>
+            </div>
+          </div>
+          <% })%>
+      </div>
     </div>
-</div>
+  </div>
 
-<% include ../partials/footer%>
+  <% include ../partials/footer%>
